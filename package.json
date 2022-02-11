@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "package": "electron-packager . simple_twitch_app --overwrite --platform=win32 --arch=x64 --icon=twitch.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"simple twitch app\""
   },
   "author": "nivp",
   "license": "GPL-3.0-or-later",
@@ -14,9 +14,7 @@
     "electron-chrome-extensions": "^3.9.0"
   },
   "devDependencies": {
-    "electron": "^17.0.0"
-  },
-  "build": {
-    "appId": "nivp.twitch_app"
+    "electron": "^17.0.0",
+    "electron-packager": "^15.4.0"
   }
 }
