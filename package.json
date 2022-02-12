@@ -1,16 +1,18 @@
 {
   "name": "twitch_app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Twitch app with built in adblock",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager . simple_twitch_app --overwrite --platform=win32 --arch=x64 --icon=twitch.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"simple twitch app\""
+    "package": "electron-packager . simple_twitch_app --overwrite --platform=win32 --arch=x64 --icon=twitch.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"simple twitch app\"",
+    "package-mac": "electron-packager . simple_twitch_app --overwrite --platform=darwin --arch=x64 --icon=twitch.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"simple twitch app\""
   },
   "author": "nivp",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@electron/remote": "^2.0.4",
+    "electron-chrome-context-menu": "^1.1.0",
     "electron-chrome-extensions": "^3.9.0"
   },
   "devDependencies": {

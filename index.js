@@ -1,12 +1,14 @@
 const { app, BrowserWindow, session } = require('electron')
 const { ElectronChromeExtensions } = require('electron-chrome-extensions')
 require('@electron/remote/main').initialize()
+const buildChromeContextMenu = require('electron-chrome-context-menu').default
 
 
 const createWindow = () => {
     const mySession = session.defaultSession
-    // mySession.loadExtension(__dirname + '\\extensions\\ublock_origin')
-    mySession.loadExtension(__dirname + '\\extensions\\BetterTTV')
+    // mySession.loadExtension(__dirname + '\\extensions\\ublock_origin', { allowFileAccess: true })
+    mySession.loadExtension(__dirname + '\\extensions\\BetterTTV')//Video-Ad-Block--for-Twitch
+    mySession.loadExtension(__dirname + '\\extensions\\Video-Ad-Block--for-Twitch')
 
     const extensions = new ElectronChromeExtensions({
         session: mySession,
@@ -21,7 +23,7 @@ const createWindow = () => {
         },
         createWindow(details) {
             // Optionally implemented for chrome.windows.create support
-        }
+        },
     })
 
     const win = new BrowserWindow({
@@ -49,4 +51,21 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
     createWindow()
+})
+
+app.on('web-contents-created', (event, webContents) => {
+    webContents.on('context-menu', (e, params) => {
+        const menu = buildChromeContextMenu({
+            params,
+            webContents,
+            openLink: (url, disposition) => {
+                webContents.loadURL(url)
+            }
+        })
+
+        menu.popup()
+
+        const mySession = session.defaultSession
+        mySession.loadExtension(__dirname + '\\extensions\\ublock_origin', { allowFileAccess: true })
+    })
 })
