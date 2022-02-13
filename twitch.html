@@ -42,7 +42,7 @@
 
         #window-controls {
             display: grid;
-            grid-template-columns: repeat(3, 46px);
+            grid-template-columns: repeat(4, 46px);
             position: absolute;
             top: 0;
             right: 0;
@@ -58,17 +58,21 @@
             height: 100%;
         }
 
-        #min-button {
+        #home-button {
             grid-column: 1;
+        }
+
+        #min-button {
+            grid-column: 2;
         }
 
         #max-button,
         #restore-button {
-            grid-column: 2;
+            grid-column: 3;
         }
 
         #close-button {
-            grid-column: 3;
+            grid-column: 4;
         }
 
         @media (-webkit-device-pixel-ratio: 1.5),
@@ -117,7 +121,7 @@
 
         #titlebar #drag-region {
             display: grid;
-            grid-template-columns: auto 138px;
+            grid-template-columns: auto 184px;
         }
 
         #window-title {
@@ -166,6 +170,12 @@
             </div>
             <div id="window-controls">
 
+                <div class="button" id="home-button">
+                    <img class="icon"
+                    srcset="icons/home-w-15.png 1x, icons/home-w-15.png 1.25x, icons/home-w-15.png 1.5x, icons/home-w-15.png 1.75x, icons/home-w-20.png 2x, icons/home-w-20.png 2.25x, icons/home-w-24.png 2.5x, icons/home-w-30.png 3x, icons/home-w-30.png 3.5x"
+                        draggable="false" style="width: 15px; height: 15px;" />
+                </div>
+
                 <div class="button" id="min-button">
                     <img class="icon"
                         srcset="icons/min-w-10.png 1x, icons/min-w-12.png 1.25x, icons/min-w-15.png 1.5x, icons/min-w-15.png 1.75x, icons/min-w-20.png 2x, icons/min-w-20.png 2.25x, icons/min-w-24.png 2.5x, icons/min-w-30.png 3x, icons/min-w-30.png 3.5x"
@@ -193,18 +203,10 @@
             </div>
         </div>
     </header>
-    <webview id="myWebview" src="https://www.twitch.tv"></webview>
+    <webview id="myWebview" src="https://www.twitch.tv" webpreferences="nativeWindowOpen=true" allowpopups></webview>
 
 
-    <script>
-        document.body.onload = () => {
-            let webview = document.getElementById("myWebview")
-            console.log(webview)
-            let title = document.getElementById("window-title-text")
-            webview.addEventListener("load-commit", () => {
-                title.innerText = webview.getTitle()
-            })
-        }
+    <script src ="./twitch.js">
     </script>
     <script src="renderer.js"></script>
 </body>
