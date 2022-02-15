@@ -1,6 +1,6 @@
 {
   "name": "twitch_app",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Twitch app with built in adblock",
   "main": "index.js",
   "scripts": {
